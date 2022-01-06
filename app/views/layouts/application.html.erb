@@ -6,9 +6,55 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <title>nagano_cake</title>
   </head>
 
   <body>
+    <header class="top-page-header">
+      <div class="header-top-content">
+        <%= link_to root_path, class:"header-title" do %>
+          <div>NaganoCake</div>
+            <div class="header-sub-title">~幸せのスイーツをあなたに~</div>
+        <% end %>
+
+        <div class="nav">
+          <ul class="lists-right">
+           <% if admin_signed_in? %>
+           <li>
+            <%= link_to "商品一覧", admin_items_path, class: "nav-lists" %>
+          </li>
+          <li>
+            <%= link_to "会員一覧", admin_customers_path, class: "nav-lists" %>
+          </li>
+          <li>
+            <%= link_to "注文履歴一覧", root_path, class: "nav-lists" %>
+          </li>
+          <li>
+            <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-lists" %>
+          </li>
+          <% else %>
+          <li>
+            <%= link_to "About", homes_about_path, class: "nav-lists" %>
+          </li>
+          <li>
+            <%= link_to "商品一覧", admin_items_path, class: "nav-lists" %>
+          </li>
+          <li>
+            <%= link_to "新規登録", new_admin_registration_path, class: "nav-lists" %>
+          </li>
+          <li>
+            <%= link_to "ログイン", new_admin_session_path, class: "nav-lists" %>
+          </li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+    <div class="header-center">
+      <div class="header-center-top">スイーツを買うなら</div>
+      <div class="header-center-bottom">NaganoCake</div>
+    </div>
+    </header>
+
     <%= yield %>
   </body>
 </html>
