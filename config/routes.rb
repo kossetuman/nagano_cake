@@ -1,12 +1,20 @@
 Rails.application.routes.draw do
-  devise_for :admins
-  devise_for :customers
+  devise_for(
+    :admins,
+    path: 'admins',
+    module: 'admin/admins'
+  )
+  devise_for(
+    :customers,
+    path: '/',
+    module: 'public/customers'
+  )
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   # public側のルーティング
-  
+
   scope module: :public do
-    
+
   #homes_controller
   root to: 'homes#top'
   get 'homes/about'
@@ -37,7 +45,7 @@ Rails.application.routes.draw do
       get  :thanks
     end
  end
- 
+
  #addresses_controller
  resources :addresses, only:[:index, :edit, :create, :update, :destroy]
  end
