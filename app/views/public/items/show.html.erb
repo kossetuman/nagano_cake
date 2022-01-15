@@ -1,2 +1,40 @@
-<h1>Items#show</h1>
-<p>Find me in app/views/items/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 mt-2">
+       <table class="table table-hover border">
+      <thead class="thead-light">
+        <tr>
+          <th>ジャンル検索</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @genres.each do |genre| %>
+        <tr>
+          <td><%= link_to genre.name, items_path(genre_id: genre.id) %></td>
+        </tr>
+          <% end %>
+      </tbody>
+    </table>
+    </div>
+    <div class="col-md-3 mt-2">
+      <%= attachment_image_tag @item, :image, size: "200x200", format: "jpeg", fallback: "no_image.jpg" %>
+    </div>
+    <div class="col-md-6 mt-2">
+      <div class="item-name">
+        <%= @item.name %>
+      </div>
+      <div class="item-introduction mt-3">
+        <%= @item.introduction %>
+      </div>
+      <div class="item-price mt-5">
+        ￥<%= @item.price*1.1 %> (税込)
+      </div>
+      <%= form_with model: @item, local: true do |f| %>
+        <div class="form-group mt-4">
+          <%= f.select :amount, ['1', '2', '3', '4', '5'], {include_blank: '個数選択'} %>
+          <%= f.submit "カートに入れる", class: "btn btn-success btn-sm ml-4 mb-2" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

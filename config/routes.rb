@@ -23,9 +23,9 @@ Rails.application.routes.draw do
   resources :items, only:[:index, :show]
 
   #customers_controller
+  get "customers/my_page", to: 'customers#show', as: :my_page_customers
   resource :customers, only:[:edit, :update] do
     collection do
-      get   :my_page
       get   :unsubscribe_confirmation
       patch :unsubscribe
     end
