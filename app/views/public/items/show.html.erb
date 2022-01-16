@@ -27,11 +27,12 @@
         <%= @item.introduction %>
       </div>
       <div class="item-price mt-5">
-        ￥<%= @item.price*1.1 %> (税込)
+        ￥<%= @item.add_tax_price.to_s(:delimited) %> (税込)
       </div>
-      <%= form_with model: @item, local: true do |f| %>
+      <%= form_with model: @cart_item, local: true do |f| %>
         <div class="form-group mt-4">
           <%= f.select :amount, ['1', '2', '3', '4', '5'], {include_blank: '個数選択'} %>
+          <%= f.hidden_field :item_id, :value => @item.id %>
           <%= f.submit "カートに入れる", class: "btn btn-success btn-sm ml-4 mb-2" %>
         </div>
       <% end %>

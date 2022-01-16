@@ -1,2 +1,19 @@
-<h1>Customers#show</h1>
-<p>Find me in app/views/customers/show.html.erb</p>
+<div class="container">
+  <p class="guide">マイページ</p>
+  <table>
+    <tr>
+      <td class="text">登録情報</td>
+      <td><%= link_to "編集する",  edit_customers_path, class: "btn btn-success btn-sm" %></td>
+    </tr>
+  </table>
+  <div class="row">
+    <div class="col-md-8">
+      <table class="table">
+        <tr>
+           <td>氏名</td>
+           <td><%= @customers.last_name %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
