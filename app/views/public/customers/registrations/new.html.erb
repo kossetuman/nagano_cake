@@ -57,6 +57,10 @@
         <%= f.submit "新規登録", class: "btn btn-success btn-sm mb-3" %>
       </div>
     <% end %>
+        <p class="guide">既に登録済みのかた</p>
+        <div class="session-guide">
+          <%= link_to "こちら", new_customer_session_path %> からログインして下さい
+        </div>
 </div>
 
 <%#= render "public/customers/shared/links" %>

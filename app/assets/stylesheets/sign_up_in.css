@@ -54,3 +54,7 @@ h1 {
   border: solid 1px #cccccc;
   border-radius: 2px;
 }
+
+.session-guide {
+  padding-bottom: 50px;
+}
