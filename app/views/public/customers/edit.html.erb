@@ -1,2 +1,59 @@
-<h1>Customers#edit</h1>
-<p>Find me in app/views/customers/edit.html.erb</p>
+<div class="container">
+  <% if @customer.errors.any? %>
+   <%= @customer.errors.count %> 件のエラーが発生しました
+     <% @customer.errors.full_messages.each do |message| %>
+     <ul>
+      <li><%= message %></li>
+    </ul>
+     <% end %>
+  <% end %>
+  <div class="row">
+     <p class="guide">会員情報編集</p>
+  </div>
+  <%= form_with model: @customer, url: customers_path, local: true do |f| %>
+    <table class="table-all">
+      <tr>
+        <th> <%= f.label :name, "名前", class: "label-title" %></th>
+        <td><%= f.text_field :first_name,autofocus: true, placeholder: "(性) 山田", class: "field" %></td>
+        <td><%= f.text_field :last_name,  placeholder: "(名) 太郎", class: "field" %></td>
+      </tr>
+    </table>
+    <table class="table-all">
+      <tr>
+        <th><%= f.label :name_kana, "カナ", class: "label-title" %></th>
+        <td><%= f.text_field :first_name_kana, placeholder: "(セイ) ヤマダ", class: "field"%></td>
+        <td><%= f.text_field :last_name_kana, placeholder: "(メイ) タロウ", class: "field" %></td>
+      </tr>
+    </table>
+    <table class="table-all">
+      <tr>
+        <th><%= f.label :email, "メールアドレス", class: "label-title"%></th>
+        <td> <%= f.email_field :email, placeholder: "@sample@example.com", autocomplete: "email", class: "field" %></td>
+      </tr>
+    </table>
+    <table class="table-all">
+      <tr>
+        <th><%= f.label :postal_code, "郵便番号(ハイフン不要)", class: "label-title" %></th>
+        <td><%=f.text_field :postal_code, placeholder: "0000000", class: "field" %></td>
+      </tr>
+    </table>
+    <table class="table-all">
+      <tr>
+        <th><%= f.label :address, "住所", class: "label-title" %></th>
+        <td><%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0", size: 46, class: "field" %></td>
+      </tr>
+    </table>
+    <table class="table-all">
+      <tr>
+        <th><%= f.label :telephone_number, "電話番号(ハイフン不要)", class: "label-title" %></th>
+        <th><%=f.telephone_field :telephone_number, placeholder: "00000000000", class: "field" %></th>
+      </tr>
+    </table>
+    <table class="table-all">
+      <tr>
+        <th><%= f.submit "編集内容を保存", class: "btn btn-success mr-5" %></th>
+        <td><%= link_to "退会する", unsubscribe_confirmation_customers_path, class: "btn btn-danger btn-sm" %></td>
+      </tr>
+    </table>
+  <% end %>
+</div>

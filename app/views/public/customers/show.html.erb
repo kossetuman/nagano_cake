@@ -13,27 +13,27 @@
     <div class="col-md-8">
       <table class="table table-bordered">
         <tr>
-          <td>氏名</td>
+          <th>氏名</th>
           <td><%= @customers.first_name + @customers.last_name %></td>
         </tr>
         <tr>
-          <td>カナ</td>
+          <th>カナ</th>
           <td><%= @customers.first_name_kana + @customers.last_name_kana %></td>
         </tr>
         <tr>
-          <td>郵便番号</td>
+          <th>郵便番号</th>
           <td><%= @customers.postal_code %></td>
         </tr>
         <tr>
-          <td>住所</td>
+          <th>住所</th>
           <td><%= @customers.address %></td>
         </tr>
         <tr>
-          <td>電話番号</td>
+          <th>電話番号</th>
           <td><%= @customers.telephone_number %></td>
         </tr>
         <tr>
-          <td>メールアドレス</td>
+          <th>メールアドレス</th>
           <td><%= @customers.email %></td>
         </tr>
       </table>
