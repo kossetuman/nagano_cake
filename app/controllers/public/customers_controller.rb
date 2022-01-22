@@ -1,4 +1,5 @@
 class Public::CustomersController < ApplicationController
+
   def show
     @customers = current_customer
   end
@@ -13,15 +14,19 @@ class Public::CustomersController < ApplicationController
     redirect_to my_page_customers_path
     else
     render :edit
+    end
   end
 
   def unsubscribe_confirmation
+
   end
 
   def unsubscribe
+    @customer = current_customer
+    @customer.update(is_active: false)
+    reset_session
+    redirect_to root_path
   end
-
-end
 
   private
 
