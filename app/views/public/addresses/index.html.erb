@@ -1,2 +1,62 @@
-<h1>Addresses#index</h1>
-<p>Find me in app/views/addresses/index.html.erb</p>
+<div class="container">
+   <% if @address.errors.any? %>
+     <%= @address.errors.count %> 件のエラーが発生しました
+       <% @address.errors.full_messages.each do |message| %>
+         <ul>
+           <li><%= message %></li>
+         </ul>
+     <% end %>
+   <% end %>
+  <div class="row">
+    <p class="guide">配送先登録/一覧</p>
+  </div>
+  <div class="row">
+    <%= form_with model: @address, local: true do |f| %>
+
+    <table class="table-address-new">
+      <tr>
+        <th class="th-width">郵便番号(ハイフンなし)</th>
+        <td><%= f.text_field :postal_code, placeholder: "0000000", autofocus: true, class: "form-control" %></td>
+      </tr>
+    </table>
+    <table class="table-address-new">
+      <tr>
+        <th class="th-width">住所</th>
+        <td><%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0", size: 46, class: "form-control" %></td>
+      </tr>
+    </table>
+    <table class="table-address-new">
+      <tr>
+        <th class="th-width">宛名</th>
+        <td><%= f.text_field :name, placeholder: "山田太郎", class: "form-control" %></td>
+        <td><%= f.submit "新規登録", class: "btn btn-success btn-sm ml-5" %></td>
+      </tr>
+    </table>
+    <% end %>
+  </div>
+  <div class="row mt-3">
+    <div class="col-md-8">
+      <table class="table table-bordered">
+        <thead class="thead-light">
+          <tr>
+            <th>郵便番号</th>
+            <th>住所</th>
+            <th>宛名</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @addresses.each do |address| %>
+          <tr>
+            <td><%= address.postal_code %></td>
+            <td><%= address.address %></td>
+            <td><%= address.name %></td>
+            <td><%= link_to "編集する", edit_address_path(address.id), class: "btn btn-success btn-sm" %>
+                <%= link_to "削除する", address_path(address.id), method: :delete, data: {confirm: '本当に削除しますか？'}, class: "btn btn-danger btn-sm" %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+     </div>
+  </div>
+</div>

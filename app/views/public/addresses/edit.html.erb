@@ -1,2 +1,36 @@
-<h1>Addresses#edit</h1>
-<p>Find me in app/views/addresses/edit.html.erb</p>
+<div class="container">
+   <% if @address.errors.any? %>
+     <%= @address.errors.count %> 件のエラーが発生しました
+       <% @address.errors.full_messages.each do |message| %>
+         <ul>
+           <li><%= message %></li>
+         </ul>
+     <% end %>
+   <% end %>
+  <div class="row">
+    <p class="guide">配送先編集</p>
+  </div>
+  <div class="row">
+    <%= form_with model: @address, local: true do |f| %>
+    <table class="table-address-new">
+      <tr>
+        <th class="th-width">郵便番号(ハイフンなし)</th>
+        <td><%= f.text_field :postal_code, placeholder: "0000000", autofocus: true, class: "form-control" %></td>
+      </tr>
+    </table>
+    <table class="table-address-new">
+      <tr>
+        <th class="th-width">住所</th>
+        <td><%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0", size: 46, class: "form-control" %></td>
+      </tr>
+    </table>
+    <table class="table-address-new">
+      <tr>
+        <th class="th-width">宛名</th>
+        <td><%= f.text_field :name, placeholder: "山田太郎", class: "form-control" %></td>
+        <td><%= f.submit "更新内容を保存", class: "btn btn-success btn-sm ml-5" %></td>
+      </tr>
+    </table>
+    <% end %>
+  </div>
+</div>

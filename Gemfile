@@ -65,3 +65,5 @@ gem 'jquery-rails'
 gem 'kaminari'
 
 gem 'rails-i18n'
+
+gem "enum_help"

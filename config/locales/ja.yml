@@ -1,0 +1,7 @@
+#ja.yml
+ja:
+  enums:
+    order:
+      payment_method:
+        creditcard: 'クレジットカード'
+        banktransfer: '銀行振込'

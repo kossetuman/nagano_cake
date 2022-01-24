@@ -1,2 +1,64 @@
-<h1>Orders#confirm</h1>
-<p>Find me in app/views/orders/confirm.html.erb</p>
+<div class="container">
+  <div class="row">
+    <p class="guide">注文情報確認</p>
+  </div>
+  <div class="row">
+    <div class="col-md-8">
+      <table class="table table-bordered">
+        <thead class="thead-light">
+          <tr>
+            <th>商品名</th>
+            <th>単価(税込)</th>
+            <th>数量</th>
+            <th>小計</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @total_payment = 0 %>
+          <% @postage = 800 %>
+          <% @cart_items.each do |cart_item| %>
+          <tr>
+            <td><%= attachment_image_tag cart_item.item, :image, size: "40x35", format: "jpeg", fallback: "no_image.jpg" %>
+                <%= cart_item.item.name %>
+            </td>
+            <td><%= cart_item.item.add_tax_price.to_s(:delimited) %></td>
+            <td><%= cart_item.amount %></td>
+            <td><%= cart_item.item.add_tax_price * cart_item.amount %></td>
+          </tr>
+          <% @total_payment += cart_item.item.add_tax_price * cart_item.amount %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-4">
+      <table class="table table-bordered">
+        <tr>
+          <th class="table-info">送料</th>
+          <td><%= @postage %></td>
+        </tr>
+        <tr>
+          <th class="table-info">商品合計</th>
+          <td><%= @total_payment %></td>
+        </tr>
+        <tr>
+          <th class="table-info">請求金額</th>
+          <td><%= @postage + @total_payment %></td>
+        </tr>
+      </table>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <table>
+          <tr class="payment_method">
+            <th>支払方法</th>
+            <td></td>
+          </tr>
+          <tr>
+            <th>お届け先</th>
+            <td><%= @order.address %></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
