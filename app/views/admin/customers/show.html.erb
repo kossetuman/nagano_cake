@@ -1,2 +1,52 @@
-<h1>Admin::Customers#show</h1>
-<p>Find me in app/views/admin/customers/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <p class="guide"><%= @customer.first_name + @customer.last_name %>さんの会員詳細</p>
+  </div>
+  <div class="row mt-2">
+    <table>
+      <tr>
+        <th class="customer-show-th">会員ID</th>
+        <td class="customew-show-td"><%= @customer.id %></td>
+      </tr>
+      <tr>
+        <th class="customer-show-th">氏名</th>
+        <td class="customer-show-th"><%= @customer.first_name + @customer.last_name %></td>
+      </tr>
+      <tr>
+        <th class="customer-show-th">フリガナ</th>
+        <td class="customew-show-td"><%= @customer.first_name_kana + @customer.last_name_kana %></td>
+      </tr>
+      <tr>
+        <th class="customer-show-th">郵便番号</th>
+        <td class="customew-show-td"><%= @customer.postal_code %></td>
+      </tr>
+      <tr>
+        <th class="customer-show-th">住所</th>
+        <td class="customew-show-td"><%= @customer.address %></td>
+      </tr>
+      <tr>
+        <th class="customer-show-th">電話番号</th>
+        <td class=customew-show-td><%= @customer.telephone_number %></td>
+      </tr>
+      <tr>
+        <th class="customer-show-th">メールアドレス</th>
+        <td class="customew-show-td"><%= @customer.email %></td>
+      </tr>
+      <tr>
+        <th class="customer-show-th">会員ステータス</th>
+        <td class="customew-show-td"><%= @customer.is_active %></td>
+      </tr>
+    </table>
+  </div>
+  <div class="row">
+    <table>
+      <tr>
+        <th class="customer-show-th"></th>
+        <td>
+          <%= link_to "編集する", edit_admin_customer_path(@customer.id), class: "btn btn-success btn-sm" %>
+          <%= link_to "注文履歴一覧を見る",  admin_root_path, class: "btn btn-primary btn-sm ml-3" %>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
