@@ -1,2 +1,78 @@
-<h1>Admin::Customers#edit</h1>
-<p>Find me in app/views/admin/customers/edit.html.erb</p>
+<div class="container">
+   <% if @customer.errors.any? %>
+   <%= @customer.errors.count %> 件のエラーが発生しました
+     <% @customer.errors.full_messages.each do |message| %>
+     <ul>
+      <li><%= message %></li>
+    </ul>
+     <% end %>
+  <% end %>
+  <div class="row">
+    <p class="guide"><%= @customer.first_name + @customer.last_name %>さんの会員情報編集</p>
+  </div>
+  <div class="row">
+    <%= form_with model: @customer, url: admin_customer_path(@customer.id), local: true do |f| %>
+    <table class="admin-customer-edit-table">
+      <tr>
+        <th class="admin-customer-edit-th">会員ID</th>
+        <th><%= @customer.id %></th>
+      </tr>
+    </table>
+    <table class="admin-customer-edit-table">
+      <tr>
+        <th class="admin-customer-edit-th">氏名</th>
+        <td><%= f.text_field :first_name, class: "field" %></td>
+        <td><%= f.text_field :last_name, class: "field" %></td>
+      </tr>
+    </table>
+    <table class="admin-customer-edit-table">
+      <tr>
+        <th class="admin-customer-edit-th">フリガナ</th>
+        <td><%= f.text_field :first_name_kana, class: "field" %></td>
+        <td><%= f.text_field :last_name_kana, class: "field" %></td>
+      </tr>
+    </table>
+    <table class="admin-customer-edit-table">
+      <tr>
+        <th class="admin-customer-edit-th">郵便番号</th>
+        <td><%= f.text_field :postal_code, class: "field" %></td>
+      </tr>
+    </table>
+    <table class="admin-customer-edit-table">
+      <tr>
+        <th class="admin-customer-edit-th">住所</th>
+        <td><%= f.text_field :address, size: 46, class: "field" %></td>
+      </tr>
+    </table>
+    <table class="admin-customer-edit-table">
+      <tr>
+        <th class="admin-customer-edit-th">電話番号</th>
+        <td><%= f.text_field :telephone_number, class: "field" %></td>
+      </tr>
+    </table>
+    <table class="admin-customer-edit-table">
+      <tr>
+        <th class="admin-customer-edit-th">メールアドレス</th>
+        <td><%= f.text_field :email, class: "field" %></td>
+      </tr>
+    </table>
+    <table class="admin-customer-edit-table">
+      <tr>
+        <th class="admin-customer-edit-th">会員ステータス</th>
+        <td class="pr-3"><%= f.radio_button :is_active, :true %>
+            <%= f.label :is_active, "有効", {value: :true} %>
+        </td>
+        <td><%= f.radio_button :is_active, :false %>
+            <%= f.label :is_active, "退会", {value: :false} %>
+        </td>
+      </tr>
+    </table>
+    <table>
+      <tr>
+        <th class="admin-customer-edit-th"></th>
+        <td><%= f.submit "変更を保存", class: "btn btn-success btn-sm" %></td>
+      </tr>
+    </table>
+    <% end %>
+  </div>
+</div>

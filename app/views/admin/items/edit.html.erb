@@ -8,7 +8,7 @@
      <% end %>
    <% end %>
   <h2>商品新規登録</h2>
-  <%= form_with model: @item, url:  admin_item_path(@item.id), local: true do |f| %>
+  <%= form_with model: @item, url: admin_item_path(@item.id), local: true do |f| %>
   <div class="form-group">
     <label for="item_image">商品画像</label>
     <%= f.attachment_field :image %>
