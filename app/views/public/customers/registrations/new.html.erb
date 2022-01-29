@@ -5,52 +5,66 @@
       <p class="guide">新規会員登録</p>
       <%= render "public/customers/shared/error_messages", resource: resource %>
 
-      <div class="form-group">
-        <%= f.label :name, "名前", class: "label-title" %>
-          <%= f.text_field :first_name,autofocus: true, placeholder: "(性) 山田", class: "field" %>
-          <%= f.text_field :last_name,  placeholder: "(名) 太郎", class: "field" %>
-      </div>
+      <table class="customer-registration-table">
+        <tr>
+          <th class="label-title">名前</th>
+          <td><%= f.text_field :first_name,autofocus: true, placeholder: "(性) 山田", class: "field" %></td>
+          <td><%= f.text_field :last_name,  placeholder: "(名) 太郎", class: "field" %></td>
+        </tr>
+      </table>
 
-      <div class="form-group">
-        <%= f.label :name_kana, "カナ", class: "label-title" %>
-          <%= f.text_field :first_name_kana, placeholder: "(セイ) ヤマダ", class: "field"%>
-          <%= f.text_field :last_name_kana, placeholder: "(メイ) タロウ", class: "field" %>
-      </div>
+      <table class="customer-registration-table">
+        <tr>
+          <th class="label-title">カナ</th>
+          <td><%= f.text_field :first_name_kana, placeholder: "(セイ) ヤマダ", class: "field"%></td>
+          <td><%= f.text_field :last_name_kana, placeholder: "(メイ) タロウ", class: "field" %></td>
+        </tr>
+      </table>
 
-      <div class="form-group">
-        <%= f.label :email, "メールアドレス", class: "label-title"%>
-        <%= f.email_field :email, placeholder: "@sample@example.com", autocomplete: "email", class: "field" %>
-      </div>
+      <table class="customer-registration-table">
+        <tr>
+          <th class="label-title">メールアドレス</th>
+          <td><%= f.email_field :email, placeholder: "@sample@example.com", autocomplete: "email", class: "field" %></td>
+        </tr>
+      </table>
 
-      <div class="form-group">
-        <%= f.label :postal_code, "郵便番号(ハイフン不要)", class: "label-title" %>
-        <%=f.text_field :postal_code, placeholder: "0000000", class: "field" %>
-      </div>
+       <table class="customer-registration-table">
+         <tr>
+           <th class="label-title">郵便番号(ハイフン不要)</th>
+           <td><%=f.text_field :postal_code, placeholder: "0000000", class: "field" %></td>
+         </tr>
+       </table>
 
-      <div class="form-group">
-        <%= f.label :address, "住所", class: "label-title" %>
-        <%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0", size: 46, class: "field" %>
-      </div>
+       <table class="customer-registration-table">
+         <tr>
+           <th class="label-title">住所</th>
+           <td><%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0", size: 46, class: "field" %></td>
+         </tr>
+       </table>
 
-      <div class="form-group">
-        <%= f.label :telephone_number, "電話番号(ハイフン不要)", class: "label-title" %>
-        <%=f.telephone_field :telephone_number, placeholder: "00000000000", class: "field" %>
-      </div>
+      <table class="customer-registration-table">
+        <tr>
+          <th class="label-title">電話番後(ハイフン不要)</th>
+          <td><%=f.telephone_field :telephone_number, placeholder: "00000000000", class: "field" %></td>
+        </tr>
+      </table>
 
-      <div class="form-group">
-        <span class="label-title">
-          <%= f.label :password, "パスワード" %>
+       <table class="customer-registration-table">
+         <tr>
+           <th class="label-title">パスワード
             <% if @minimum_password_length %>
             <em>(<%= @minimum_password_length %> 文字以上)</em>
-            <% end %><br />
-        </span>
-        <%= f.password_field :password, autocomplete: "new-password", class: "field" %>
-      </div>
+            <% end %><br /></th>
+            <td><%= f.password_field :password, autocomplete: "new-password", class: "field" %></td>
+         </tr>
+       </table>
 
-      <div class="form-group">
-        <%= f.label :password_confirmation, "パスワード再確認", class: "label-title" %>
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "field" %>
-      </div>
+      <table class="customer-registration-table">
+        <tr>
+          <th class="label-title">パスワード再確認</th>
+          <td><%= f.password_field :password_confirmation, autocomplete: "new-password", class: "field" %></td>
+        </tr>
+      </table>
 
       <div class="sign-up-actions">
         <div class="label-title"></div>

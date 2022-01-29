@@ -15,7 +15,6 @@
         </thead>
         <tbody>
           <% @total_payment = 0 %>
-          <% @postage = 800 %>
           <% @cart_items.each do |cart_item| %>
           <tr>
             <td><%= attachment_image_tag cart_item.item, :image, size: "40x35", format: "jpeg", fallback: "no_image.jpg" %>
@@ -34,7 +33,7 @@
       <table class="table table-bordered">
         <tr>
           <th class="table-info">送料</th>
-          <td><%= @postage %></td>
+          <td><%= @order.postage %></td>
         </tr>
         <tr>
           <th class="table-info">商品合計</th>
@@ -42,23 +41,36 @@
         </tr>
         <tr>
           <th class="table-info">請求金額</th>
-          <td><%= @postage + @total_payment %></td>
+          <td><%= @order.postage + @total_payment %></td>
         </tr>
       </table>
     </div>
+  </div>
     <div class="row">
       <div class="col-md-12">
-        <table>
+        <table class="mb-3">
           <tr class="payment_method">
             <th>支払方法</th>
-            <td></td>
+            <td><%= @order.payment_method %></td>
           </tr>
+        </table>
+        <table>
           <tr>
             <th>お届け先</th>
-            <td><%= @order.address %></td>
+            <td><%= @order.postal_code + @order.address + @order.name %></td>
           </tr>
         </table>
       </div>
     </div>
-  </div>
+    <div class="row d-flex justify-content-center mt-">
+      <%= form_with model: @order, url: orders_path, metod: :post, local: true do |f| %>
+      <%= f.hidden_field :address, value: @order.address %>
+      <%= f.hidden_field :name, value: @order.name %>
+      <%= f.hidden_field :postal_code, value: @order.postal_code %>
+      <%= f.hidden_field :postage, value: @order.postage %>
+      <%= f.hidden_field :total_payment, value: @order.postage + @total_payment %>
+      <%= f.hidden_field :payment_method, value: @order.payment_method %>
+      <%= f.submit "購入を確定する", class: "btn btn-success btn-sm" %>
+      <% end %>
+    </div>
 </div>

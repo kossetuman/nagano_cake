@@ -7,12 +7,12 @@
     <p class="form-title">支払方法</p>
     <div class="form-group-orders-new">
       <div>
-        <%= f.radio_button :payment_method, :creditcard %>
-        <%= f.label :payment_method_creditcard, "クレジットカード", {value: :creditcard, style: "display: inline-block;"} %>
+        <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
+        <%= f.label :payment_method_creditcard, Order.payment_methods_i18n[:creditcard], {style: "display: inline-block;"} %>
       </div>
       <div>
-        <%= f.radio_button :payment_method, :banktranfer %>
-        <%= f.label :payment_method_banktranfer, "銀行振込", {value: :banktransfer, style: "display: inline-block;"} %>
+        <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
+        <%= f.label :payment_method_banktransfer, Order.payment_methods_i18n[:banktransfer], {style: "display: inline-block;"} %>
       </div>
     </div>
     <p class="form-title">お届け先</p>
@@ -31,7 +31,7 @@
       <div>
         <%= f.radio_button :address_option, 2 %>
         <%= f.label :address_option, "登録済住所から選択", {value: 2, style: "display: inline-block;"} %>
-        <%= collection_select :address, :id, @addresses, :id, :address_all, {include_blank: "~選択してください~"}, {class: "form-control ml-4 mb-2"} %>
+        <%= f.select :address_id, options_from_collection_for_select(current_customer.addresses, :id, :full_address), {include_blank: "~選択してください~"}, {class: "form-control ml-4 mb-2"} %>
       </div>
       <div>
         <%= f.radio_button :address_option, 3 %>
@@ -52,9 +52,9 @@
         </table>
       </div>
     </div>
-    <div class="col-md-4 offset-md-5 mt-3">
+    <div class="col-md-4 offset-md-5 mt-3 mb-3">
       <%= f.submit "確認画面へ進む", class: "btn btn-primary" %>
     </div>
-    <% end %> 
+    <% end %>
   </div>
 </div>
