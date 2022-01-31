@@ -1,2 +1,80 @@
-<h1>Admin::Orders#show</h1>
-<p>Find me in app/views/admin/orders/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <p class="guide">注文履歴詳細</p>
+  </div>
+  <div class="row">
+    <table class="admin-orders-show-table">
+      <tr>
+        <th class="admin-orders-show-th">購入者</th>
+        <td><%= link_to @order.customer.first_name + @order.customer.last_name, admin_customer_path(@order.id) %></td>
+      </tr>
+    </table>
+  </div>
+  <div class="row">
+    <table class="admin-orders-show-table">
+      <tr>
+        <th class="admin-orders-show-th">注文日</th>
+        <td><%= localize @order.created_at, format: :short %></td>
+      </tr>
+    </table>
+  </div>
+  <div class="row">
+    <table class="admin-orders-show-table">
+    <tr>
+      <th class="admin-orders-show-th">配送先</th>
+      <td>
+        〒<%= @order.postal_code + @order.address %>
+          <%= @order.name %>
+      </td>
+    </tr>
+    </table class="admin-orders-show-table">
+  </div>
+  <div class="row">
+    <table>
+      <tr>
+        <th class="admin-orders-show-th">支払方法</th>
+        <td><%= @order.payment_method_i18n %></td>
+      </tr>
+    </table>
+  </div>
+  <div class="row mt-4">
+    <div class="col-md-6">
+      <table class="table">
+        <thead class="thead-light">
+          <th>商品名</th>
+          <th>単価(税込)</th>
+          <th>数量</th>
+          <th>小計</th>
+        </thead>
+        <tbody>
+          <% @sum_price = 0 %>
+          <% @order_details.each do |detail| %>
+          <tr>
+            <td><%= detail.item.name %></td>
+            <td><%= detail.tax_included_price %></td>
+            <td><%= detail.amount %></td>
+            <td><%= detail.tax_included_price * detail.amount %></td>
+            <% @sum_price += detail.tax_included_price * detail.amount %>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-4 d-flex align-items-end ml-3">
+      <table>
+        <tr>
+          <th class="admin-orders-show-th2">商品合計</th>
+          <td><%= @sum_price %>円</td>
+        </tr>
+        <tr>
+          <th class="admin-orders-show-th2">送料</th>
+          <td><%= @postage %>円</td>
+        </tr>
+        <tr>
+          <th class="admin-orders-show-th2">請求金額</th>
+          <td><%= @sum_price + @postage %>円</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

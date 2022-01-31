@@ -6,7 +6,7 @@ class Customer < ApplicationRecord
 
   has_many :cart_items
   has_many :addresses
-  belongs_to :order
+  has_many :orders
 
   validates :first_name, presence: true
   validates :last_name, presence: true

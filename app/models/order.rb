@@ -8,5 +8,5 @@ class Order < ApplicationRecord
   validates :payment_method, presence: true
 
   has_many :details
-  has_many :customers
+  belongs_to :customer
 end
