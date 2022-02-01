@@ -34,7 +34,13 @@
       </tr>
       <tr>
         <th class="customer-show-th">会員ステータス</th>
-        <td class="customew-show-td text-success"><%= @customer.is_active %></td>
+        <td>
+          <% if @customer.is_active == true %>
+            <div class="text-success"><%= '有効' %></div>
+          <% else %>
+            <div class="text-black-50"><%= '無効' %></div>
+          <% end %>
+        </td>
       </tr>
     </table>
   </div>

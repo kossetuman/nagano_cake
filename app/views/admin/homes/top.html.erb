@@ -15,9 +15,9 @@
       <tbody>
         <% @orders.each do |order| %>
         <tr>
-          <td><%= link_to order.created_at, admin_order_path(order.id) %></td>
+          <td><%= link_to localize(order.created_at), admin_order_path(order.id) %></td>
           <td><%= order.customer.first_name + order.customer.last_name %></td>
-          <td><%= order.details.all.sum(:amount) %></td>
+          <td><%= order.details.sum(:amount) %></td>
           <td><%= order.status_i18n %></td>
         </tr>
         <% end %>

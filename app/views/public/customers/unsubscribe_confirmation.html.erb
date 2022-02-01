@@ -12,7 +12,7 @@
         <table>
         <tr>
           <td><%= link_to "退会しない", my_page_customers_path, class: "btn btn-primary btn-sm" %></td>
-          <td><%= link_to "退会する", unsubscribe_customers_path, method: :patch, class: "btn btn-danger btn-sm" %></td>
+          <td><%= link_to "退会する", unsubscribe_customers_path, method: :patch, data: {confirm: "本当に退会しますか？"}, class: "btn btn-danger btn-sm" %></td>
         </tr>
       </table>
       </div>

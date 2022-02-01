@@ -23,7 +23,7 @@
     <tr>
       <th class="admin-orders-show-th">配送先</th>
       <td>
-        〒<%= @order.postal_code + @order.address %>
+        〒<%= @order.postal_code %>&ensp;<%= @order.address %>&ensp;
           <%= @order.name %>
       </td>
     </tr>

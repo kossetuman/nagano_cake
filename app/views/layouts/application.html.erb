@@ -12,7 +12,7 @@
   <body>
     <header class="top-page-header">
       <div class="header-top-content">
-        <%= link_to root_path, class:"header-title" do %>
+        <%= link_to root_path, class: "header-title" do %>
           <div>NaganoCake</div>
             <div class="header-sub-title">~幸せのスイーツをあなたに~</div>
         <% end %>
@@ -27,7 +27,7 @@
             <%= link_to "会員一覧", admin_customers_path, class: "nav-lists" %>
           </li>
           <li>
-            <%= link_to "注文履歴一覧", root_path, class: "nav-lists" %>
+            <%= link_to "注文履歴一覧", admin_root_path, class: "nav-lists" %>
           </li>
           <li>
             <%= link_to "ジャンル一覧", admin_genres_path, class: "nav-lists" %>
